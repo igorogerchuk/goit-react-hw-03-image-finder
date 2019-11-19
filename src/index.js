@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ImageFinder from './components/ImageFinder';
+import App from './components/App';
 
-ReactDOM.render(<ImageFinder />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
