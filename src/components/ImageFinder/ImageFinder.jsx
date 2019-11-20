@@ -16,13 +16,14 @@ export default class ImageFinder extends Component {
     pageNumber: 1,
     query: '',
     error: null,
+    scrollHeight: 0,
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.query !== this.state.query) {
       this.fetchPictures();
     }
-    window.scrollTo(0, this.imageFinder.current.scrollHeight);
+    window.scrollTo(0, this.state.scrollHeight);
   }
 
   onSearch = query => {
@@ -32,7 +33,10 @@ export default class ImageFinder extends Component {
   fetchPictures = () => {
     const { query, pageNumber } = this.state;
 
-    this.setState({ isLoading: true });
+    this.setState({
+      isLoading: true,
+      scrollHeight: this.imageFinder.current.scrollHeight,
+    });
 
     fetchAPIPictures(query, pageNumber)
       .then(pictures => {
